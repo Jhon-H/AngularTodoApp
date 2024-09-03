@@ -1,0 +1,11 @@
+<input
+  type="checkbox"
+  [checked]="checked"
+  (click)="handleInputCheck()"
+  #inputCheck
+  [ngClass]="{
+    'm-0 grid h-[1.15em] w-[1.15em] appearance-none place-content-center rounded-[0.15em] border-[0.11em] border-current bg-white text-inherit': true,
+    'before:clip-path-check before:h-[0.65em] before:w-[0.65em] before:origin-bottom-left before:scale-0 before:bg-purple-700 before:transition-transform checked:before:scale-100': true,
+    'disabled:cursor-not-allowed disabled:text-[#959495]': true
+  }"
+/>

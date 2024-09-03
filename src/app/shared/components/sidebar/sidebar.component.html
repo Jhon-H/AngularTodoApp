@@ -1,0 +1,68 @@
+<div
+  [ngClass]="{
+    'flex h-full max-h-screen justify-between rounded-r-xl border-r bg-white p-2 text-gray-700 shadow-2xl md:p-4': true,
+    'w-fit min-w-[200px]  max-w-[300px] flex-col gap-y-5 md:min-w-[320px] md:max-w-[400px]':
+      isOpen(),
+    'w-9 min-w-fit items-start md:w-20': !isOpen()
+  }"
+>
+  @if (isOpen()) {
+    <div class="max-h-[80vh]">
+      <div class="flex items-center justify-between px-2 py-4 md:mb-2 md:p-4">
+        <h2
+          class="eading-snug font-sans text-lg font-semibold tracking-normal text-gray-900 antialiased md:text-xl"
+        >
+          Lista de Tareas
+        </h2>
+
+        <button (click)="toogleOpen()">
+          <shared-icon icon="chevron-left" size="sm" />
+          <shared-icon icon="chevron-left" size="sm" />
+        </button>
+      </div>
+
+      <div class="mb-1 flex justify-center px-2">
+        @if (isLoggedIn) {
+          <div class="flex gap-x-3 text-lg font-bold">
+            <a routerLink="/summary">{{ user?.username ?? "xxxxxx" }}</a>
+            <button (click)="signOut()" class="text-red-600">
+              <shared-icon icon="close" />
+            </button>
+          </div>
+        } @else {
+          <a class="text-lg font-medium text-blue-600" routerLink="/auth/login"
+            >Inicia sesión</a
+          >
+        }
+      </div>
+
+      <nav class="h-fit max-h-[90%] justify-self-start overflow-y-auto">
+        <ul class="flex flex-col gap-y-1 md:gap-y-2">
+          @for (menuItem of menuItems; track menuItem.id) {
+            <shared-sidebar-item
+              [name]="menuItem.name"
+              [redirectTo]="menuItem.redirectTo"
+              [icon]="menuItem.icon"
+            />
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <button
+      class="flex h-9 w-full items-center gap-x-2 rounded-md bg-blue-500/90 px-6 py-3 text-white hover:bg-blue-500 md:h-11"
+      (click)="addList()"
+    >
+      <shared-icon icon="plus" />
+      Nueva Lista
+    </button>
+  } @else {
+    <button
+      class="mt-3 flex aspect-square w-fit items-center justify-center rounded-md bg-transparent p-0 md:mt-4 md:w-full md:max-w-11 md:bg-slate-200/90 md:hover:bg-slate-200"
+      (click)="toogleOpen()"
+    >
+      <shared-icon icon="chevron-right" size="xs" iconClass="fill-blue-500" />
+      <shared-icon icon="chevron-right" size="xs" iconClass="fill-blue-500" />
+    </button>
+  }
+</div>

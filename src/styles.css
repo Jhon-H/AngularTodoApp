@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .list-style-link::marker {
+    content: "🔗";
+    font-size: 0.8rem;
+  }
+
+  .form-sizing-content {
+    form-sizing: content;
+  }
+
+  .clip-path-check {
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+}
+
+/* Personalización de scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Ancho de la scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo de la track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color del thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color del thumb al pasar el mouse */
+}
+
+html {
+  overflow: hidden;
+  width: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Nunito, "Helvetica Neue", sans-serif;
+  position: fixed;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}

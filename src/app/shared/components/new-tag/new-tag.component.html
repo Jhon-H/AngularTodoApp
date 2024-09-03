@@ -1,0 +1,18 @@
+@if (!isAddingTag) {
+  <button
+    class="rounded-lg border border-dashed border-gray-700 px-2 py-0.5 text-xs"
+    (click)="onClickAddTag()"
+  >
+    Add tag
+  </button>
+} @else {
+  <input
+    type="text"
+    #txtInput
+    class="w-32 rounded-lg border border-gray-700 px-2 py-0 text-sm"
+    placeholder="tag name"
+    maxlength="15"
+    clickOutside
+    (clickOutside)="onClickOutside()"
+  />
+}

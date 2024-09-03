@@ -1,0 +1,13 @@
+<div
+  class="w-full gap-x-3 rounded-md border border-gray-200 px-5 py-3 shadow-sm"
+  clickOutside
+  (clickOutside)="onClickOutside()"
+>
+  <input
+    type="text"
+    placeholder="Escribe el nombre de la tarea..."
+    #txtInput
+    (keyup.enter)="onKeyUpEnter()"
+    class="w-full rounded-md border-2 p-2 text-sm font-medium outline-none transition-all focus:border-gray-400"
+  />
+</div>

@@ -1,0 +1,11 @@
+<div class="flex h-full w-screen flex-row bg-white/95">
+  <shared-sidebar (openAddListModal)="openAddListModal()" />
+  <tasks-add-list-modal
+    [isOpen]="isOpenModal()"
+    (closeModal)="closeAddListModal()"
+  />
+
+  <div class="w-full bg-white/95 text-[#333333]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

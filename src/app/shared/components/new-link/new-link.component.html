@@ -1,0 +1,51 @@
+<div class="relative w-fit" clickOutside (clickOutside)="onCancel()">
+  <div (click)="onClick()" id="addBtn">
+    <ng-content #btn></ng-content>
+  </div>
+
+  @if (isAddingNewLink) {
+    <div
+      class="-right-30 absolute -top-14 h-fit w-fit max-w-40 rounded-md border border-slate-400 bg-white p-2 shadow-md"
+    >
+      <form
+        [formGroup]="linkForm"
+        (ngSubmit)="onAddLink()"
+        ngForm
+        class="flex w-full flex-col gap-y-2"
+      >
+        @for (input of inputs; track $index) {
+          <input
+            type="text"
+            [formControlName]="input.name"
+            [placeholder]="input.placeholder"
+            [ngClass]="{
+              'rounded-sm border px-1 py-0.5 text-xs text-gray-700 outline-none': true,
+              'border-red-600 focus:border-red-700':
+                getInput(input.name).invalid && getInput(input.name).touched,
+              'border-gray-400 focus:border-gray-500':
+                !getInput(input.name).invalid || !getInput(input.name).touched
+            }"
+          />
+        }
+
+        <div class="flex justify-center gap-x-3">
+          <button
+            type="submit"
+            [disabled]="linkForm.invalid"
+            class="rounded-sm bg-purple-500 px-2 py-0.5 text-xs text-white disabled:pointer-events-none disabled:opacity-50"
+          >
+            Agregar
+          </button>
+
+          <button
+            type="button"
+            (click)="onCancel()"
+            class="rounded-sm bg-gray-300 px-2 py-0.5 text-xs"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+</div>

@@ -1,0 +1,45 @@
+<main
+  class="mx-auto flex h-screen w-full max-w-5xl flex-col gap-y-4 px-3 py-5 md:w-11/12 md:gap-y-6 md:px-8 md:py-8"
+>
+  <shared-title [title]="listTitle" (changeTitle)="onChangeTitle($event)" />
+
+  <hr />
+
+  <div class="w-full">
+    <button
+      class="flex w-36 items-center justify-center gap-x-2 rounded-md bg-purple-600 p-1 text-slate-50 disabled:opacity-70 md:p-2"
+      (click)="onClickNewTask()"
+      [disabled]="isCreatingTask"
+    >
+      <shared-icon icon="plus" size="sm" />
+      New Task
+    </button>
+  </div>
+
+  <ul class="no-scrollbar flex max-h-full flex-col gap-y-4 overflow-auto pb-12">
+    @if (isCreatingTask) {
+      <tasks-new-task (addTask)="onAddTask($event)" (discart)="onDiscart()" />
+    }
+    @for (task of tasks; track task.id) {
+      <li>
+        <tasks-task
+          [id]="task.id"
+          [title]="task.title"
+          [comments]="task.comments.length"
+          [links]="task.links.length"
+          [tags]="task.tags"
+          [isComplete]="task.isComplete"
+          (check)="onCheck($event)"
+          [redirectTo]="redirectTaskTo(task.id)"
+        />
+      </li>
+    } @empty {
+      <div class="mx-auto mt-8 flex max-w-72 flex-col items-center gap-y-8">
+        <h2 class="w-full text-center text-xl">
+          Aún no tienes tareas creadas. Crea tu primera tarea.
+        </h2>
+        <shared-icon icon="ghost" size="4x" />
+      </div>
+    }
+  </ul>
+</main>

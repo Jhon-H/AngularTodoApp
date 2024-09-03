@@ -1,0 +1,214 @@
+<div
+  class="flex min-h-screen flex-col items-center justify-center bg-slate-200 py-4"
+>
+  <div
+    class="flex w-full max-w-md flex-col rounded-md bg-white px-4 py-8 shadow-md sm:px-6 md:px-8 lg:px-10"
+  >
+    <div
+      class="self-center text-xl font-medium uppercase text-gray-800 sm:text-2xl"
+    >
+      Registrate
+    </div>
+
+    <div class="mt-10">
+      <form (ngSubmit)="signUp()" [formGroup]="registerForm">
+        <div class="mb-6 flex flex-col">
+          <label
+            for="username"
+            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm"
+            >Nombre de usuario:</label
+          >
+          <div class="relative">
+            <div
+              class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </div>
+
+            <input
+              id="username"
+              type="text"
+              placeholder="username"
+              formControlName="username"
+              class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
+            />
+          </div>
+        </div>
+        <div class="mb-6 flex flex-col">
+          <label
+            for="email"
+            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm"
+            >Correo electrónico:</label
+          >
+          <div class="relative">
+            <div
+              class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </div>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="user@domain.com"
+              formControlName="email"
+              class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
+            />
+          </div>
+        </div>
+        <div class="mb-6 flex flex-col">
+          <label
+            for="password"
+            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm"
+            >Contraseña:</label
+          >
+          <div class="relative">
+            <div
+              class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400"
+            >
+              <span>
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+              </span>
+            </div>
+
+            <input
+              id="password"
+              autocomplete="on"
+              type="password"
+              placeholder="********"
+              formControlName="password"
+              class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
+            />
+          </div>
+        </div>
+        <div class="mb-6 flex flex-col">
+          <label
+            for="confirmPassword"
+            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm"
+            >Confimar contraseña:</label
+          >
+          <div class="relative">
+            <div
+              class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400"
+            >
+              <span>
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+              </span>
+            </div>
+
+            <input
+              id="confirmPassword"
+              autocomplete="on"
+              type="password"
+              placeholder="********"
+              formControlName="confirmPassword"
+              class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
+            />
+          </div>
+        </div>
+
+        <div class="flex w-full">
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid"
+            class="flex w-full items-center justify-center rounded bg-blue-500 py-2 text-sm text-white transition duration-150 ease-in hover:bg-blue-700 focus:outline-none disabled:pointer-events-none disabled:opacity-70 sm:text-base"
+          >
+            <span class="mr-2 uppercase">Registrate</span>
+            <span>
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        @if (isError) {
+          <span class="text-sm text-red-500"
+            >Ocurrió un error al registrarse. Intentalo de nuevo</span
+          >
+        }
+      </form>
+    </div>
+    <div class="mt-6 flex items-center justify-center">
+      <a
+        class="inline-flex items-center text-center text-xs font-bold text-blue-500 hover:text-blue-700"
+        routerLink="/auth/login"
+      >
+        <span>
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+            />
+          </svg>
+        </span>
+        <span class="ml-2">¿Ya tienes cuenta?</span>
+      </a>
+    </div>
+  </div>
+</div>

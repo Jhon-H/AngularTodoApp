@@ -1,0 +1,83 @@
+<main
+  class="mx-auto flex h-screen w-full max-w-5xl flex-col gap-y-4 px-3 py-5 md:w-11/12 md:gap-y-6 md:px-8 md:py-8"
+>
+  <div class="flex flex-col gap-y-1">
+    <shared-title [title]="currentTitle" (changeTitle)="onChangeTitle($event)" />
+
+    <span class="text-sm">
+      Última actualización:
+      {{ task.lastUpdate | date: "d MMMM y - h:mm a" }}
+    </span>
+  </div>
+
+  <hr />
+
+  <section class="flex gap-3">
+    @for (tag of currentTags; track tag.id) {
+      <shared-tag
+        withIcon
+        [name]="tag.name"
+        [color]="tag.color | tagColor: 'green'"
+      />
+    }
+
+    <shared-new-tag (addTag)="onClickAddTag($event)" />
+  </section>
+
+  <section
+    class="flex h-fit min-h-fit w-full flex-col justify-between gap-y-3 rounded-md border border-gray-300 px-3 py-2 shadow-sm md:px-6 md:py-4"
+  >
+    @if (!currentLinks.length) {
+      <p>No tienes Links</p>
+    } @else {
+      <ul class="flex flex-col gap-y-0.5 pl-3">
+        @for (link of currentLinks; track link.id) {
+          <li class="list-style-link list-disc">
+            <shared-link [title]="link.name" [link]="link.link" />
+          </li>
+        }
+      </ul>
+    }
+
+    <shared-new-link (addLink)="onAddLink($event)">
+      <button
+        class="rounded-md border border-gray-700 bg-transparent px-2 py-1 text-xs"
+      >
+        Agregar Link
+      </button>
+    </shared-new-link>
+  </section>
+
+  <section class="h-fit max-h-full overflow-y-auto rounded-sm shadow-sm">
+    <shared-new-comment (saveComment)="onSaveComment($event)" />
+
+    <ul class="mt-4 flex flex-col gap-y-2">
+      @for (comment of currentComments; track comment.id) {
+        <li
+          class="h-fit min-h-14 w-full rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-700"
+        >
+          {{ comment.text }}
+        </li>
+      }
+    </ul>
+  </section>
+
+  <span class="flex-auto"></span>
+
+  <div class="flex items-center justify-start gap-x-4 md:gap-x-5">
+    <button
+      class="h-9 w-36 rounded-md bg-purple-600 p-1 text-slate-50 disabled:opacity-70 md:p-2"
+      (click)="onSaveChanges()"
+      [disabled]="isPristine"
+    >
+      Guardar
+    </button>
+
+    <button
+      class="h-9 w-36 rounded-lg border border-current bg-transparent text-gray-600 hover:text-gray-800"
+      (click)="onCancel()"
+    >
+      Cancelar
+    </button>
+  </div>
+</main>

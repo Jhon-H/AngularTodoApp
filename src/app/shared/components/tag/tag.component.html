@@ -1,0 +1,10 @@
+<span
+  class="rounded-lg px-2 py-0.5 text-xs"
+  [ngStyle]="{ color: tagColor.text, backgroundColor: tagColor.bg }"
+>
+  @if (withIcon) {
+    <shared-icon icon="circle" size="2xs" />
+  }
+
+  {{ name }}
+</span>

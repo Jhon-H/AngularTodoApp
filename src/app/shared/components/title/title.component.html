@@ -1,0 +1,14 @@
+@if (isEditing()) {
+  <input
+    #txtInput
+    (keyup.enter)="onKeyupEnter()"
+    [placeholder]="title"
+    clickOutside
+    (clickOutside)="onClickOutside()"
+    class="rounded-md border-2 border-gray-500/70 px-2 py-0.5 text-xl outline-none focus:border-gray-500 md:text-2xl"
+  />
+} @else {
+  <h1 (click)="onClickTitle()" role="button" class="text-3xl md:text-4xl">
+    {{ title }}
+  </h1>
+}

@@ -1,0 +1,39 @@
+@if (!isCreatingComment) {
+  <button
+    class="w-full rounded-sm border border-dashed border-gray-400 bg-transparent px-4 py-2 text-gray-800"
+    (click)="onClickButton()"
+  >
+    New comment
+  </button>
+} @else {
+  <form
+    [formGroup]="commentForm"
+    (ngSubmit)="onSubmit()"
+    class="flex h-fit w-full flex-col gap-y-1"
+  >
+    <textarea
+      type="text"
+      formControlName="comment"
+      placeholder="Escribe tu comentario aquí..."
+      class="min-h-12 w-full resize-none rounded-md border border-gray-400 p-4 text-sm outline-none focus:border-gray-400"
+    ></textarea>
+
+    <div class="flex gap-x-2">
+      <button
+        class="w-fit rounded-sm bg-purple-600 px-2 py-1 text-xs text-white hover:bg-purple-700 disabled:pointer-events-none disabled:opacity-65"
+        [disabled]="commentForm.controls['comment'].invalid"
+        type="submit"
+      >
+        Guardar
+      </button>
+
+      <button
+        class="w-fit rounded-sm bg-gray-300 px-2 py-1 text-xs"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+}

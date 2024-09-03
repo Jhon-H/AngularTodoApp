@@ -1,0 +1,50 @@
+<div
+  [ngClass]="{
+    'flex w-full items-start gap-x-3 rounded-md border border-gray-200 px-5 py-3 shadow-sm': true
+  }"
+  (click)="onClick($event)"
+>
+  <shared-checkbox
+    ngClass="mt-0.5 text-gray-300"
+    [checked]="isComplete"
+    (check)="handleInputCheck($event)"
+  />
+
+  <div class="flex flex-col gap-y-0.5">
+    <h2
+      [ngClass]="{
+        'text-base font-medium': true,
+        'text-gray-600/80 line-through': isComplete
+      }"
+    >
+      {{ title }}
+    </h2>
+
+    @if (!isComplete) {
+      <div class="flex items-center gap-x-3 pl-1">
+        @if (comments > 0) {
+          <p class="flex items-center gap-x-1 text-gray-500">
+            <shared-icon icon="comment" size="sm" />
+            <span class="text-xs font-semibold">{{ comments }}</span>
+          </p>
+        }
+        @if (links > 0) {
+          <p class="flex items-center gap-x-1 text-sm text-gray-500">
+            <shared-icon icon="link" size="sm" />
+            <span class="text-xs font-semibold">{{ links }}</span>
+          </p>
+        }
+      </div>
+
+      <ul class="flex flex-wrap gap-x-2 gap-y-1">
+        @for (tag of tags; track tag.id) {
+          <shared-tag
+            [name]="tag.name"
+            [color]="tag.color | tagColor: 'peach'"
+            withIcon
+          />
+        }
+      </ul>
+    }
+  </div>
+</div>
